@@ -15,7 +15,7 @@ namespace WebApplication8
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string path = $"{Server.MapPath(".")}/archivos";
+            string path = $"{Server.MapPath(".")}/{Session["usuario"]}";
             string mensaje = string.Empty;
 
             if (!Directory.Exists(path))
@@ -40,7 +40,7 @@ namespace WebApplication8
 
         public void cargarGrilla()
         {
-            string path = $"{Server.MapPath(".")}/archivos";
+            string path = $"{Server.MapPath(".")}/{Session["usuario"]}";
 
             if (Directory.Exists(path))
             {

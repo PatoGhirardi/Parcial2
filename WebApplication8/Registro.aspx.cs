@@ -16,10 +16,11 @@ namespace WebApplication8
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            HttpCookie cookie = new HttpCookie("email", TextBox4.Text);
+            HttpCookie cookie = new HttpCookie("password", TextBox4.Text);
             Response.Cookies.Add(cookie);
             this.Session["usuario"] = TextBox1.Text;
             Response.Redirect(Request.RawUrl);
+
         }
 
         

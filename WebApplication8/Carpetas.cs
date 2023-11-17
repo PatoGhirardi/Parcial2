@@ -5,12 +5,12 @@ using System.Web;
 
 namespace WebApplication8
 {
-    public class archivo
+    public class Carpetas
     {
         public string Name {  get; set; }
         public string Path { get; set; }
 
-        public archivo(string name, string path)
+        public Carpetas(string name, string path)
         {
             Name = name;
             Path = path;

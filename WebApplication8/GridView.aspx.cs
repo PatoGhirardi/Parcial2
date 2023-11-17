@@ -10,7 +10,14 @@ namespace WebApplication8
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarGrilla();
+            if (this.Session["usuario"] != null)
+            {
+                loadGrid();
+            }
+            else
+            {
+                Response.Redirect("FormularioDeRegistro.aspx");
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -27,7 +34,7 @@ namespace WebApplication8
             {
                 if (File.Exists($"{path}/{archivo.FileName}"))
                 {
-                    mensaje += $"El archivo{archivo.FileName} ya existe.";
+                    mensaje += $"El archivo: {archivo.FileName} ya existe.";
                 }
                 else
                 {
@@ -35,20 +42,20 @@ namespace WebApplication8
                 }
                 Label1.Text = mensaje;
             }
-            cargarGrilla();
+            loadGrid();
         }
 
-        public void cargarGrilla()
+        public void loadGrid()
         {
             string path = $"{Server.MapPath(".")}/{Session["usuario"]}";
 
             if (Directory.Exists(path))
             {
                 string[] files = Directory.GetFiles(path);
-                List<archivo> fileList = new List<archivo>();
+                List<Carpetas> fileList = new List<Carpetas>();
                 foreach (string file in files)
                 {
-                    var filenew = new archivo(Path.GetFileName(file), file);
+                    var filenew = new Carpetas(Path.GetFileName(file), file);
                     fileList.Add(filenew);
                 }
                 GridView1.DataSource = fileList;
